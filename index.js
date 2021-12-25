@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 const input = $("#i");
 const button = $("#s");
-const { q } = [...new URLSearchParams(Location.search.substring(1)).values();
+const { q } = [...new URLSearchParams(Location.search.substring(1)).values()];
 
 if (q) input.value = q;
 
