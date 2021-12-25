@@ -6,6 +6,7 @@ const q = new URLSearchParams(location.search.substring(1)).get("q");
 button.addEventListener("click", async () => {
   input.focus();
   input.select();
+  await delay(200);
   const r = await navigator.clipboard.writeText(
     await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
@@ -23,6 +24,12 @@ async function generate(string) {
     string = string.replaceAll(k, v);
   }
   return string;
+}
+
+function delay(ms) {
+  return new Promise((r) => {
+    setTimeout(r, ms);
+  });
 }
 
 if (q) {
