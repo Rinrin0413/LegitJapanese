@@ -13,9 +13,10 @@ button.addEventListener("click", async () => {
 });
 
 async function generate(string) {
+  const { decode } = new TextDecoder("iso-8859-1");
   const src = await fetch(
     "https://raw.githubusercontent.com/Rinrin0413/MS.dic_Ayashiy-Nipongo/master/assets/MS-IME-DICT_Ayashiy-Nipongo_v1.1.0.txt",
-  ).then(async r => r.text());
-  const ime = new MSIMEDict(src);
+  ).then(async r => r.arrayBuffer());
+  const ime = new MSIMEDict(decode(src));
   return ime.json();
 }
