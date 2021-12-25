@@ -4,10 +4,7 @@ const button = $("#s");
 const q = new URLSearchParams(location.search.substring(1)).get("q");
 
 button.addEventListener("click", async () => {
-  input.focus();
-  input.select();
-  await delay(200);
-  const r = await navigator.clipboard.writeText(
+  const r = await copy(
     await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
   history.replaceState(null, null, "index.html?q=" + input.value);
@@ -26,11 +23,7 @@ async function generate(string) {
   return string;
 }
 
-function delay(ms) {
-  return new Promise((r) => {
-    setTimeout(r, ms);
-  });
-}
+async function copy(e){const n=document.createElement("textarea");n.value=e,document.body.appendChild(n),n.select(),document.execCommand("copy"),n.parentElement.removeChild(n)}
 
 if (q) {
   input.value = q;
