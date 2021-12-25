@@ -4,6 +4,8 @@ const button = $("#s");
 const q = new URLSearchParams(location.search.substring(1)).get("q");
 
 button.addEventListener("click", async () => {
+  input.focus();
+  input.select();
   const r = await navigator.clipboard.writeText(
     await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
