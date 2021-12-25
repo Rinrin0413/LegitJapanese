@@ -1,13 +1,13 @@
 const $ = document.querySelector.bind(document);
 const input = $("#i");
 const button = $("#s");
-const { q } = [...new URLSearchParams(location.search.substring(1)).values()];
+const q = new URLSearchParams(location.search.substring(1)).get("q");
 
 button.addEventListener("click", async () => {
   const r = await navigator.clipboard.writeText(
     await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
-  history.replaceState(null, null, "index.html?q=" + q);
+  history.replaceState(null, null, "index.html?q=" + input.value);
 });
 
 async function generate(string) {
