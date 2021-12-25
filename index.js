@@ -16,6 +16,6 @@ async function generate(string) {
   const src = await fetch(
     "https://raw.githubusercontent.com/Rinrin0413/MS.dic_Ayashiy-Nipongo/master/assets/MS-IME-DICT_Ayashiy-Nipongo_v1.1.0.txt",
   ).then(async r => r.text());
-  const { json } = new MSIMEDict(src);
-  return json();
+  const ime = new MSIMEDict(src);
+  return ime.json();
 }
