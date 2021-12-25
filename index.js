@@ -3,46 +3,8 @@ const input = $("#i");
 const button = $("#s");
 const q = new URLSearchParams(location.search.substring(1)).get("q");
 
-window.cp = (function(window, document, navigator) {
-  let textArea, copy;
-
-  function isOS() {
-    return navigator.userAgent.match(/ipad|iphone/i);
-  }
-  function createTextArea(text) {
-    textArea = document.createElement('textArea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-  }
-  function selectText() {
-    let range, selection;
-    if (isOS()) {
-      range = document.createRange();
-      range.selectNodeContents(textArea);
-      selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-      textArea.setSelectionRange(0, 999999);
-    } else {
-      textArea.select();
-    }
-  }
-  function copyToClipboard() {        
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-  }
-  copy = async function(text) {
-    createTextArea(text);
-    selectText();
-    copyToClipboard();
-  };
-  return {
-    copy
-  }
-})(window, document, navigator);
-
 button.addEventListener("click", async () => {
-  const r = await cp.copy(
+  const r = await copy(
     await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
   history.replaceState(null, null, "index.html?q=" + input.value);
@@ -61,8 +23,21 @@ async function generate(string) {
   return string;
 }
 
+async function copy(text) {
+  let el = document.createElement("textarea"), range = document.createRange();
+  document.body.appendChild(el);
+  el.contentEditable = true;
+  el.readOnly = false;
+  range.selectNodeContents(el);
+  let s = window.getSelection();
+  s.removeAllRanges();
+  s.addRange(range);
+  el.setSelectionRange(0, 999999);
+  document.execCommand('copy');
+  el.remove();
+}
+
 if (q) {
   input.value = q;
   button.click();
 }
-
