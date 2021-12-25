@@ -1,1 +1,1 @@
-# legitJapanese
+# LegitJapanese
