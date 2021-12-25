@@ -7,7 +7,7 @@ if (q) input.value = q;
 
 button.addEventListener("click", async () => {
   const r = await navigator.clipboard.writeText(
-    await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch(() => alert("エラーだわぼけ")
+    await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
   );
   history.replaceState({ q: input.value }, null, "index.html");
 });
