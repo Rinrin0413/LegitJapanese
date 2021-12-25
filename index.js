@@ -13,10 +13,9 @@ button.addEventListener("click", async () => {
 });
 
 async function generate(string) {
-  const decoder = new TextDecoder("utf-8");
-  const src = decoder.decode(await fetch(
+  const src = await fetch(
     "assets/ayasii.txt",
-  ).then(async r => await r.arrayBuffer()));
+  ).then(async r => await r.text());
   const ime = new MSIMEDict(src);
   return ime.json();
 }
