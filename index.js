@@ -4,9 +4,7 @@ const button = $("#s");
 const q = new URLSearchParams(location.search.substring(1)).get("q");
 
 button.addEventListener("click", async () => {
-  const r = await copy(
-    await generate(input.value)).then(() => alert("クリップボードにコピーしたわぼけ")).catch((e) => alert("エラーだわぼけ" + e.message)
-  );
+  const r = copy(await generate(input.value));
   history.replaceState(null, null, "index.html?q=" + input.value);
 });
 
@@ -24,17 +22,15 @@ async function generate(string) {
 }
 
 async function copy(text) {
-  let el = document.createElement("textarea"), range = document.createRange();
+  let el = $("#o"), te = text.split("\n");
+  if (el) el.remove();
+  el = document.createElement("textarea");
+  el.rows = te.length + 1;
+  el.cols = Math.max(...te.map(x => x.length));
+  el.value = text;
+  el.focus();
+  el.select();
   document.body.appendChild(el);
-  el.contentEditable = true;
-  el.readOnly = false;
-  range.selectNodeContents(el);
-  let s = window.getSelection();
-  s.removeAllRanges();
-  s.addRange(range);
-  el.setSelectionRange(0, 999999);
-  document.execCommand('copy');
-  el.remove();
 }
 
 if (q) {
