@@ -16,7 +16,7 @@ async function generate(string) {
   const d = ime.json();
   for (let k in d) {
     const v = d[k];
-    string = string.replaceAll(k, v);
+    string = string.replaceAll(new RegExp(k, "gi"), v);
   }
   return string;
 }
