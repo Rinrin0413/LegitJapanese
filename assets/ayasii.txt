@@ -1,5 +1,5 @@
 !Microsoft IME Dictionary Tool
-!Version: 1.1.0
+!Version: 1.1.1-s
 
 ![怪レい日本语辞畫]
 !贵樣はこゐ辞畫を使て正レい日本语を使ラことが出來ゑ。
@@ -236,6 +236,10 @@
 くさ	23333	感動詞	怪レい(草を生やす)
 わら	23333	感動詞	怪しい(草を生やす)
 うまい	ラまい！！	感動詞	怪レい
+
+!Sueqkjs Changed
+PayPay	支付宝	名詞	怪レい
+円	元	名詞	怪レい
 
 
 !MIT License
