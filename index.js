@@ -28,9 +28,10 @@ async function copy(text) {
   el.rows = te.length + 1;
   el.cols = Math.max(...te.map(x => x.length));
   el.value = text;
+  el.id = "o";
+  document.body.appendChild(el);
   el.focus();
   el.select();
-  document.body.appendChild(el);
 }
 
 if (q) {
