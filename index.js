@@ -26,7 +26,7 @@ async function copy(text) {
   if (el) el.remove();
   el = document.createElement("textarea");
   el.rows = te.length + 1;
-  el.cols = Math.max(...te.map(x => x.length));
+  el.cols = Math.max(...te.map(x => x.length * 2));
   el.value = text;
   el.id = "o";
   document.body.appendChild(el);
