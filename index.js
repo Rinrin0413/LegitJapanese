@@ -5,7 +5,7 @@ const q = new URLSearchParams(location.search.substring(1)).get("q");
 
 button.addEventListener("click", async () => {
   const r = copy(await generate(input.value));
-  history.replaceState(null, null, "index.html?q=" + input.value);
+  history.replaceState(null, null, "index.html?q=" + input.value.replaceAll("\n", "%0A"));
 });
 
 async function generate(string) {
