@@ -10,7 +10,7 @@ button.addEventListener("click", async () => {
 
 async function generate(string) {
   const src = await fetch(
-    "assets/ayasii_v1.2.0.txt",
+    "assets/ayasii.txt",
   ).then(async r => await r.text());
   const ime = new MSIMEDict(src);
   const d = ime.json();
